@@ -57,3 +57,27 @@ stylelint 的冲突解决也是一样的，先安装插件 stylelint-config-pret
 > npm install @commitlint/cli @commitlint/config-conventional -D
 
 随后在根目录新建文件 .commitlintrc.js ，这就是我们的 commitlint 配置文件
+
+### Webpack 基本配置
+
+想要使用 webpack，这两个包你不得不装：
+
+> npm install webpack webpack-cli -D
+
+创建 webpack 公共文件 webpack.common.js
+
+在 根目录下创建 scripts 文件,其下边创建 config 文件夹 创建 webpack.common.js 文件
+
+配置 打包命令
+
+> "build": "webpack --config ./scripts/config/webpack.common.js",
+
+配置 专门用于存放我们的公用变量 在 scripts 下新建一个 constant.js 文件
+
+安装 webpack-merge 生产和开发 公共配置
+
+npm install webpack-merge -D
+
+cross-env 可跨平台设置和使用环境变量，不同操作系统设置环境变量的方式不一定相同
+
+> npm install cross-env -D

@@ -4,7 +4,7 @@
   "description": "react + typescript",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --config ./scripts/config/webpack.dev.js",
+    "start": "cross-env NODE_ENV=development webpack --config ./scripts/config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config ./scripts/config/webpack.prod.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "lint": "npm run lint-eslint && npm run lint-stylelint",
@@ -112,11 +112,11 @@
     "terser-webpack-plugin": "^4.0.0",
     "typescript": "^3.9.6",
     "url-loader": "^4.1.0",
-    "webpack": "^4.43.0",
+    "webpack": "^4.44.2",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^5.0.9",
+    "webpack-merge": "^5.4.0",
     "webpackbar": "^4.0.0"
   },
   "dependencies": {
