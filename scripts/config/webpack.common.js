@@ -5,6 +5,38 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 // 引入根目录
 const { PROJECT_PATH, isDev } = require('../constant')
 
+// 抽离 postcss-loader 公共代码
+const getCssLoaders = (importLoaders) => [
+  'style-loader',
+  {
+    loader: 'css-loader',
+    options: {
+      modules: false,
+      sourceMap: isDev,
+      importLoaders,
+    },
+  },
+  {
+    loader: 'postcss-loader',
+    options: {
+      ident: 'postcss',
+      plugins: [
+        // 修复一些和 flex 布局相关的 bug
+        require('postcss-flexbugs-fixes'),
+        require('postcss-preset-env')({
+          autoprefixer: {
+            grid: true,
+            flexbox: 'no-2009',
+          },
+          stage: 3,
+        }),
+        require('postcss-normalize'),
+      ],
+      sourceMap: isDev,
+    },
+  },
+]
+
 module.exports = {
   // 入口
   entry: {
@@ -20,6 +52,69 @@ module.exports = {
     filename: `js/[name]${isDev ? '' : '.[hash:8]'}.js`,
     path: resolve(PROJECT_PATH, './dist'),
   },
+  // loader
+  module: {
+    rules: [
+      // css loader
+      {
+        test: /\.css$/,
+        use: getCssLoaders(1),
+      },
+      // less loader
+      {
+        test: /\.less$/,
+        use: [
+          ...getCssLoaders(2),
+          {
+            loader: 'less-loader',
+            options: {
+              sourceMap: isDev,
+            },
+          },
+        ],
+      },
+      // sass loader
+      {
+        test: /\.scss$/,
+        use: [
+          ...getCssLoaders(2),
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: isDev,
+            },
+          },
+        ],
+      },
+      // 图片和字体文件处理
+      {
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10 * 1024,
+              name: '[name].[contenthash:8].[ext]',
+              outputPath: 'assets/images',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(ttf|woff|woff2|eot|otf)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name].[contenthash:8].[ext]',
+              outputPath: 'assets/fonts',
+            },
+          },
+        ],
+      },
+    ],
+  },
+  // plugin
   plugins: [
     new HtmlWebpackPlugin({
       template: resolve(PROJECT_PATH, './public/index.html'),

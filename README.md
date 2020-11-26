@@ -97,3 +97,74 @@ webpack-dev-server ：
 借助 clean-webpack-plugin 可以实现每次打包前先处理掉之前的 dist 目录，以保证每次打出的都是当前最新的，我们先安装它：
 
 > npm install clean-webpack-plugin -D
+
+样式文件处理
+
+CSS 样式文件处理
+
+处理 .css 文件我们需要安装 style-loader 和 css-loader ：
+
+> npm install style-loader css-loader -D
+
+注意:
+
+```
+遇到后缀为 .css 的文件，webpack 先用 css-loader 加载器去解析这个文件，遇到 @import 等语句就将相应样式文件引入（所以如果没有 css-loader ，就没法解析这类语句），计算后生成css字符串，接下来 style-loader 处理此字符串生成一个内容为最终解析完的 css 代码的 style 标签，放到 head 标签里。
+
+
+loader 是有顺序的，webpack 肯定是先将所有 css 模块依赖解析完得到计算结果再创建 style 标签。因此应该把 style-loader 放在 css-loader 的前面（webpack loader 的执行顺序是从右到左，即从后往前）。
+
+
+```
+
+LESS 样式文件处理
+
+处理 .less 文件我们需要安装 less 和 less-loader
+
+> npm install less less-loader -D
+
+```
+  遇到后缀为 .less 文件， less-loader 会将你写的 less 语法转换为 css 语法，并转为 .css 文件。
+less-loader 依赖于 less ，所以必须都安装。
+
+```
+
+SASS 样式文件处理
+
+处理 .scss 文件我们需要安装 node-sass 和 sass-loader
+
+> npm install node-sass sass-loader -D
+
+```
+    遇到 .scss 后缀的文件， sass-loader 会将你写的 sass 语法转为 css 语法，并转为 .css 文件。
+    同样地， sass-loader 依赖于 node-sass ，所以两个都需要安装。（ node-sass 我不用代理就没有正常安装上过，还好我们一开始就在配置文件里设了淘宝镜像源）
+
+```
+
+PostCSS 处理浏览器兼容问题
+
+postcss 一种对 css 编译的工具，类似 babel 对 js 一样通过各种插件对 css 进行处理，在这里我们主要使用以下插件：
+
+```
+postcss-flexbugs-fixes ：用于修复一些和 flex 布局相关的 bug。
+postcss-preset-env ：将最新的 CSS 语法转换为目标环境的浏览器能够理解的 CSS 语法，目的是使开发者不用考虑浏览器兼容问题。我们使用 autoprefixer 来自动添加浏览器头。
+postcss-normalize ：从 browserslist 中自动导入所需要的 normalize.css 内容。
+
+
+```
+
+> npm install postcss-loader postcss-flexbugs-fixes postcss-preset-env autoprefixer postcss-normalize -D
+
+图片和字体文件处理
+
+```
+      我们可以使用 file-loader 或者 url-loader 来处理本地资源文件，比如图片、字体文件，而 url-loader 具有 file-loader 所有的功能，还能在图片大小限制范围内打包成 base64 图片插入到 js 文件中，这样做的好处是什么呢？别急，我们先安装所需要的包（后者依赖前者，所以都要安装
+
+      [name].[contenthash:8].[ext] 表示输出的文件名为 原来的文件名.哈希值.后缀 ，有了这个 hash 值，可防止图片更换后导致的缓存问题。
+
+      outputPath 是输出到 dist 目录下的路径，即图片目录 dist/assets/images 以及字体相关目录 dist/assets/fonts 下。
+      limit 表示如果你这个图片文件大于 10240b ，即 10kb ，那我 url-loader 就不用，转而去使用 file-loader ，把图片正常打包成一个单独的图片文件到设置的目录下，若是小于了 10kb ，就将图片打包成 base64 的图片格式插入到打包之后的文件中，这样做的好处是，减少了 http 请求，但是如果文件过大，js文件也会过大，得不偿失，这是为什么有 limit 的原因！
+
+```
+
+> npm install file-loader url-loader -D
