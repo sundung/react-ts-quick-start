@@ -1,7 +1,7 @@
 import React from 'react'
 
 // import Header from 'Components/Header'
-
+console.log('大的')
 interface IProps {
   name: string
   age: number
