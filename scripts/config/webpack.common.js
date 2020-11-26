@@ -16,7 +16,8 @@ module.exports = {
        // 取 8位hash值
        判断当前环境,如果是开发环境,就不使用 hash值, 如果是生产环境就使用
     */
-    filename: `js/[name]${isDev ? '' : '.[hash: 8]'}.js`,
+    // filename: `js/[name]${isDev ? '' : '.[hash: 8]'}.js`,
+    filename: `js/[name]${isDev ? '' : '.[hash:8]'}.js`,
     path: resolve(PROJECT_PATH, './dist'),
   },
   plugins: [
