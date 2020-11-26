@@ -81,3 +81,13 @@ npm install webpack-merge -D
 cross-env 可跨平台设置和使用环境变量，不同操作系统设置环境变量的方式不一定相同
 
 > npm install cross-env -D
+
+本地服务实时查看页面
+
+html-webpack-plugin ：
+
+    每一个页面是一定要有 html  文件的，而这个插件能帮助我们将打包后的 js 文件自动引进 html  文件中，毕竟你不可能每次更改代码后都手动去引入 js 文件。
+
+webpack-dev-server ：
+
+    可以在本地起一个 http 服务，通过简单的配置还可指定其端口、热更新的开启等。

@@ -4,7 +4,7 @@
   "description": "react + typescript",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack --config ./scripts/config/webpack.dev.js",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config ./scripts/config/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config ./scripts/config/webpack.prod.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "lint": "npm run lint-eslint && npm run lint-stylelint",
@@ -86,7 +86,7 @@
     "fork-ts-checker-webpack-plugin": "^5.0.13",
     "glob": "^7.1.6",
     "hard-source-webpack-plugin": "^0.13.1",
-    "html-webpack-plugin": "^4.3.0",
+    "html-webpack-plugin": "^4.5.0",
     "husky": "^4.3.0",
     "less": "^3.12.2",
     "less-loader": "^6.2.0",
