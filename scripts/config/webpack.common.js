@@ -40,7 +40,7 @@ const getCssLoaders = (importLoaders) => [
 module.exports = {
   // 入口
   entry: {
-    app: resolve(PROJECT_PATH, './src/index.js'),
+    app: resolve(PROJECT_PATH, './src/index.tsx'),
   },
   // 出口
   output: {
@@ -51,6 +51,15 @@ module.exports = {
     // filename: `js/[name]${isDev ? '' : '.[hash: 8]'}.js`,
     filename: `js/[name]${isDev ? '' : '.[hash:8]'}.js`,
     path: resolve(PROJECT_PATH, './dist'),
+  },
+  // 配置 解析后缀名, 以后 import 就不用 写完文件名的全称
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js', '.json'],
+    alias: {
+      Src: resolve(PROJECT_PATH, './src'),
+      Components: resolve(PROJECT_PATH, './src/components'),
+      Utils: resolve(PROJECT_PATH, './src/utils'),
+    },
   },
   // loader
   module: {
