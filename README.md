@@ -168,3 +168,20 @@ postcss-normalize ：从 browserslist 中自动导入所需要的 normalize.css 
 ```
 
 > npm install file-loader url-loader -D
+
+jsx 解析
+
+babel-loader 使用 babel 解析文件；@babel/core 是 babel 的核心模块；@babel/preset-react 转译 jsx 语法。
+
+> npm install babel-loader @babel/core @babel/preset-react -D
+
+创建文件 .babelrc
+
+```
+{
+  "presets": ["@babel/preset-react"]
+}
+
+```
+
+然后再在,webpack.common.js 文件中 配置 babel loader

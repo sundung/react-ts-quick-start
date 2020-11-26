@@ -40,7 +40,7 @@ const getCssLoaders = (importLoaders) => [
 module.exports = {
   // 入口
   entry: {
-    app: resolve(PROJECT_PATH, './src/app.js'),
+    app: resolve(PROJECT_PATH, './src/index.js'),
   },
   // 出口
   output: {
@@ -111,6 +111,13 @@ module.exports = {
             },
           },
         ],
+      },
+      // 处理 jsx
+      {
+        test: /\.(tsx?|js)$/,
+        loader: 'babel-loader',
+        options: { cacheDirectory: true },
+        exclude: /node_modules/,
       },
     ],
   },

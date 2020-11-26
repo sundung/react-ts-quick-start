@@ -1,5 +1,7 @@
-const root = document.querySelector('#root')
-root.innerHTML = 'hello, webpack!'
-const a = 5
-// a = 6
-console.log(a)
+import React from 'react'
+
+function App() {
+  return <div className='App'>Hello World</div>
+}
+
+export default App

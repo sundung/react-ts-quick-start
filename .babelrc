@@ -1,0 +1,8 @@
+/* 
+    使用 babel 处理 jsx 
+
+*/
+
+{
+  "presets": ["@babel/preset-react"]
+}
