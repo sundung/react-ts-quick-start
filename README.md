@@ -91,3 +91,9 @@ html-webpack-plugin ：
 webpack-dev-server ：
 
     可以在本地起一个 http 服务，通过简单的配置还可指定其端口、热更新的开启等。
+
+打包编译前清理 dist 目录
+
+借助 clean-webpack-plugin 可以实现每次打包前先处理掉之前的 dist 目录，以保证每次打出的都是当前最新的，我们先安装它：
+
+> npm install clean-webpack-plugin -D
