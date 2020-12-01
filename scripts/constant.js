@@ -1,3 +1,6 @@
+/* 
+  常量文件
+*/
 const path = require('path')
 
 // 配置 根目录
