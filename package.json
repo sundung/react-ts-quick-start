@@ -120,7 +120,10 @@
     "webpackbar": "^4.0.0"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.3.0",
     "antd": "^4.9.1",
+    "babel-plugin-import": "^1.13.3",
+    "babel-preset-react-app": "^10.0.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   }

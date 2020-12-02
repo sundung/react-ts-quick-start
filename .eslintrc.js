@@ -39,6 +39,7 @@ module.exports = {
     },
   },
   rules: {
+    'react/prefer-stateless-function': 'off',
     'import/extensions': [
       ERROR,
       'ignorePackages',
@@ -51,7 +52,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [ERROR, { devDependencies: true }],
     'import/prefer-default-export': OFF,
     'import/no-unresolved': ERROR,
-
+    // 'import/no-unresolved': [2, { ignore: ['antd'] }],
     'unicorn/better-regex': ERROR,
     'unicorn/prevent-abbreviations': OFF,
     'unicorn/filename-case': [
